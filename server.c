@@ -22,7 +22,7 @@ void    Server(char* port) {
     if (serverSocket == -1)
         throwException("SOCK_ERR");
 
-    ft_memset(&serverAddress, 0, sizeof(serverAddress));
+    memset(&serverAddress, 0, sizeof(serverAddress));
     /* IPV4 체계를 이용해 통신합니다. */
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);

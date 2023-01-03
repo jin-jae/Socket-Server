@@ -15,7 +15,7 @@
 
 void    ft_char(char c);
 void	ft_print(char *str);
-void    *ft_memset(void *param, int num, size_t len);
+//void    *ft_memset(void *param, int num, size_t len);
 int ft_atoi(char* str);
 
 #endif //SERVER_CLIENT_FT_LIBRARY_H

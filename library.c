@@ -17,20 +17,20 @@ void	ft_print(char *str)
     }
 }
 
-void    *ft_memset(void *param, int num, size_t len)
-{
-    unsigned char * complete;
-    size_t sz;
-
-    complete = (unsigned char *)param;
-    sz = 0;
-    while (sz < len)
-    {
-        complete[sz] = num;
-        sz++;
-    }
-    return (void *)complete;
-}
+//void    *ft_memset(void *param, int num, size_t len)
+//{
+//    unsigned char * complete;
+//    size_t sz;
+//
+//    complete = (unsigned char *)param;
+//    sz = 0;
+//    while (sz < len)
+//    {
+//        complete[sz] = num;
+//        sz++;
+//    }
+//    return (void *)complete;
+//}
 
 int ft_atoi(char* str)
 {
