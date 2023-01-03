@@ -29,7 +29,7 @@ void    Server(char* port) {
     serverAddress.sin_port = htons(ft_atoi(port));
 
     if (bind(serverSocket, (struct sockaddr*) &serverAddress, sizeof(serverAddress)) == -1)
-        throwException("BIND_ERR");
+    throwException("BIND_ERR");
     if (listen(serverSocket, 5) == -1)
         throwException("LISTEN_ERR");
 
@@ -38,7 +38,7 @@ void    Server(char* port) {
     if (clientSocket == -1)
         throwException("ACCEPT_ERR");
 
-    char message[] = "adsf";
+    char message[] = "test message";
     write(clientSocket, message, sizeof(message));
     close(serverSocket);
     close(clientSocket);
