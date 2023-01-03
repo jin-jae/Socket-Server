@@ -4,14 +4,18 @@
 #include "exception.h"
 
 void    throwException(char *exception) {
-    if (exception == "SOCK_ERR")
+    ft_print("exception: ");
+    if !(strcmp(exception, "SOCK_ERR")) {
         ft_print("Socket Error\n");
-    if (exception == "BIND_ERR")
+    }
+    if !(strcmp(exception, "BIND_ERR")) {
         ft_print("Bind Error\n");
-    if (exception == "LISTEN_ERR")
+    }
+    if !(strcmp(exception, "LISTEN_ERR")) {
         ft_print("Listen Error\n");
-    if (exception == "ACCEPT_ERR")
+    }
+    if !(strcmp(exception, "ACCEPT_ERR")) {
         ft_print("Accept Error\n");
-
+    }
     return;
 }
