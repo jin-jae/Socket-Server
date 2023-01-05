@@ -3,35 +3,6 @@
 //
 #include "library.h"
 
-void    ft_char(char c)
-{
-    write(1, &c, 1);
-}
-
-void	ft_print(char *str)
-{
-    while (*str)
-    {
-        ft_char(*str);
-        str++;
-    }
-}
-
-//void    *ft_memset(void *param, int num, size_t len)
-//{
-//    unsigned char * complete;
-//    size_t sz;
-//
-//    complete = (unsigned char *)param;
-//    sz = 0;
-//    while (sz < len)
-//    {
-//        complete[sz] = num;
-//        sz++;
-//    }
-//    return (void *)complete;
-//}
-
 int ft_atoi(char* str)
 {
     int ans;
@@ -55,4 +26,18 @@ int ft_atoi(char* str)
         i--;
     }
     return ans;
+}
+
+void    ft_char(char c)
+{
+    write(1, &c, 1);
+}
+
+void	ft_print(char *str)
+{
+    while (*str)
+    {
+        ft_char(*str);
+        str++;
+    }
 }
