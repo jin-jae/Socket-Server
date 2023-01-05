@@ -1,0 +1,9 @@
+# exec file
+server
+
+# make out file
+*.o
+
+# IDE files
+.idea
+cmake-build-debug
