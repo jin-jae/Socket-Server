@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-g -Wall
-TARGET=main
-OBJS=exception.o library.o server.o main.o
+TARGET=server
+OBJS=exception.o library.o server.o main.o request.o
 
 all : $(TARGET)
 
