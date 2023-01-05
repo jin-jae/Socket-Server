@@ -5,6 +5,7 @@
 #include "library.h"
 
 void    Server(char* port) {
+    ft_print(port);ft_print("\n");
     int serverSocket;
     int clientSocket;
 
@@ -29,17 +30,21 @@ void    Server(char* port) {
     serverAddress.sin_port = htons(ft_atoi(port));
 
     if (bind(serverSocket, (struct sockaddr*) &serverAddress, sizeof(serverAddress)) == -1)
-    throwException("BIND_ERR");
+        throwException("BIND_ERR");
     if (listen(serverSocket, 5) == -1)
         throwException("LISTEN_ERR");
 
-    clientAddressSize = sizeof(clientAddress);
-    clientSocket = accept(serverSocket, (struct sockaddr*) &clientAddress, &clientAddressSize);
-    if (clientSocket == -1)
-        throwException("ACCEPT_ERR");
-
-    char message[] = "test message";
-    write(clientSocket, message, sizeof(message));
-    close(serverSocket);
+//    while (1)
+//    {
+        clientAddressSize = sizeof(clientAddress);
+        clientSocket = accept(serverSocket, (struct sockaddr*) &clientAddress, &clientAddressSize);
+        if (clientSocket == -1)
+        {
+            throwException("ACCEPT_ERR");
+//            break ;
+        }
+        checkRequest(clientSocket);
+//    }
     close(clientSocket);
+    close(serverSocket);
 }
