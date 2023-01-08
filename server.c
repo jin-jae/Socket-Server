@@ -4,9 +4,15 @@
 
 #include "library.h"
 
-void    Server(char* port) {
-    ft_print("--------------- Server Program made by KIM JINJAE ---------------\n");
-    ft_print("Server will try to open port number "); ft_print(port); ft_print("...\n");
+void    Server(void)
+{
+    printf("--------------- Server Program made by KIM JINJAE ---------------\n");
+    printf("Enter which port to open >> ");
+    // 개방할 port를 입력받음
+    int port;
+
+    scanf("%d", &port);
+    printf("Server will try to open port number %d...\n", port);
 
     int serverSocket;
     int clientSocket;
@@ -18,45 +24,56 @@ void    Server(char* port) {
     /* socket function : parameters
      *  domain - Determines which domain that communication happens.
      *  type - Indicates semantics of communication. (TCP 연결)
-     *  protocol -
-     *  written from "man socket" from linux System Calls Manual
+     *  protocol - Determines which protocol to be used in the socket.
     */
-    ft_print("Setting server socket... ");
+    printf("Setting server socket... ");
     serverSocket = socket(PF_INET, SOCK_STREAM, 0);
+    // 성공적으로 열지 못하면 -1 반환
     if (serverSocket == -1)
         throwException("SOCK_ERR");
-    ft_print("done!\n");
+    printf("done!\n");
 
-    ft_print("Setting server address... ");
+    printf("Setting server address... ");
+    // serverAddress 메모리 내용을 초기화
     memset(&serverAddress, 0, sizeof(serverAddress));
-    /* IPV4 체계를 이용해 통신합니다. */
+    // serverAddress 내용 설정
+    // UDP or TCP
     serverAddress.sin_family = AF_INET;
+    // 어떠한 IP Address로부터의 요청도 받아들임
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);
-    serverAddress.sin_port = htons(ft_atoi(port));
-    ft_print("done!\n");
+    // 개방할 Port Number 설정
+    serverAddress.sin_port = htons(port);
+    printf("done!\n");
 
-    ft_print("Bind server address... ");
+    printf("Binding server address... ");
+    // server 포트를 bind
+    // 성공 시 0, 실패 시 -1 반환
     if (bind(serverSocket, (struct sockaddr*) &serverAddress, sizeof(serverAddress)) == -1)
         throwException("BIND_ERR");
-    ft_print("done!\n");
-    ft_print("Listen to port... ");
+    printf("done!\n");
+    printf("Listening to port... ");
+    // socket의 연결을 들음 (최대 대기 queue는 5로 설정)
     if (listen(serverSocket, 5) == -1)
         throwException("LISTEN_ERR");
+    printf("done!\n");
 
+    // server는 24시간 열려 있어 client 의 요청을 언제나 받아들인다는 설정
     while (1)
     {
-        ft_print("Trying to accept client socket... ");
+        printf("Trying to accept client socket... ");
         clientAddressSize = sizeof(clientAddress);
+        // client로부터 요청을 받아들이기까지 이 위치에서 기다림
         clientSocket = accept(serverSocket, (struct sockaddr*) &clientAddress, &clientAddressSize);
         if (clientSocket == -1)
         {
             throwException("ACCEPT_ERR");
             break ;
         }
-        ft_print("done!\n");
-        checkRequest(clientSocket);
+        printf("caught message!!\n");
+        // 메시지를 잡으면 처리하러 가는 함수 checkRequest 실행
+        checkRequest(&clientSocket);
     }
     close(clientSocket);
     close(serverSocket);
-    ft_print("------------------------- Server ended --------------------------\n");
+    printf("------------------------- Server ended --------------------------\n");
 }

@@ -5,6 +5,6 @@
 #ifndef SERVER_CLIENT_SERVER_H
 #define SERVER_CLIENT_SERVER_H
 
-void    Server(char* port);
+void    Server(void);
 
 #endif //SERVER_CLIENT_SERVER_H
