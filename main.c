@@ -3,7 +3,8 @@
 //
 #include "library.h"
 
-int main(int argc, char *argv[]) {
-    Server(argv[1]);
+int main(void) {
+    // Server program 실행
+    Server();
     return 0;
 }
