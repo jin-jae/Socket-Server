@@ -7,6 +7,7 @@
 
 #include "library.h"
 
+#define POST    "POST"
 #define END_LINE    "\r\n"
 #define HTTP_VERSION "HTTP/1.1"
 #define CONTENT_TYPE "text/html; charset=UTF-8"
@@ -19,7 +20,7 @@
 #define VERSION_NOT_SUPPORTED   "505 HTTP Version Not Supported"
 
 void    checkRequest(int *clientSocket);
-void    createResponseMessage(char* responseMessage, char* request, char* hierarchy, char* version);
-int getHtmlFile(char* responseMessage, char* htmlFileBuffer, char* hierarchy);
+void    createResponseMessage(char* responseMessage, char* request, char* hierarchy, char* version, char* body);
+int getHtmlFile(char* responseMessage, char* htmlFileBuffer, char* hierarchy, char* body);
 
 #endif //SOCKET_SERVER_REQUEST_H
